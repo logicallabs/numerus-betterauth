@@ -1,0 +1,4 @@
+# Copy to .dev.vars for local secrets
+BETTER_AUTH_SECRET=replace-with-strong-secret
+# Optional: comma-separated list of trusted app origins
+ALLOWED_ORIGINS=https://*.numerus.app
