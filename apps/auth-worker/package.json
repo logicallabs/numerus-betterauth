@@ -1,0 +1,31 @@
+{
+  "name": "@numerus/auth-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:dev": "wrangler deploy --env dev",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply numerus_betterauth --local",
+    "db:migrate:dev": "wrangler d1 migrations apply numerus_betterauth_dev --remote --env dev",
+    "db:migrate:remote": "wrangler d1 migrations apply numerus_betterauth --remote",
+    "db:query:local": "wrangler d1 execute numerus_betterauth --local --command \"SELECT 1 as ok;\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "Cloudflare Worker auth service with D1 + KV foundation for Numerus projects.",
+  "dependencies": {
+    "better-auth": "^1.6.23",
+    "drizzle-orm": "^0.45.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.107.0"
+  }
+}
