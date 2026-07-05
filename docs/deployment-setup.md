@@ -2,6 +2,8 @@
 
 This guide makes the auth worker reusable across different Cloudflare accounts and domains.
 
+Use docs/tenant-config-template.md to capture tenant values before editing wrangler.toml.
+
 ## Prerequisites
 
 1. Cloudflare account access for the target tenant.
@@ -137,3 +139,5 @@ For each new tenant account:
 5. Deploy dev, validate, then deploy prod.
 
 Keep a tenant-specific values sheet outside git for IDs, domains, and secret rotation dates.
+
+Template option: copy docs/tenant-config-template.md and keep one completed copy per tenant.
