@@ -1,23 +1,23 @@
 {
-  "name": "@numerus/auth-worker",
+  "name": "auth-worker",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --port 8890",
     "deploy": "wrangler deploy",
     "deploy:dev": "wrangler deploy --env dev",
     "typecheck": "tsc --noEmit",
-    "db:migrate:local": "wrangler d1 migrations apply numerus_betterauth --local",
-    "db:migrate:dev": "wrangler d1 migrations apply numerus_betterauth_dev --remote --env dev",
-    "db:migrate:remote": "wrangler d1 migrations apply numerus_betterauth --remote",
-    "db:query:local": "wrangler d1 execute numerus_betterauth --local --command \"SELECT 1 as ok;\""
+    "db:migrate:local": "wrangler d1 migrations apply betterauth_auth --local",
+    "db:migrate:dev": "wrangler d1 migrations apply betterauth_auth_dev --remote --env dev",
+    "db:migrate:remote": "wrangler d1 migrations apply betterauth_auth --remote",
+    "db:query:local": "wrangler d1 execute betterauth_auth --local --command \"SELECT 1 as ok;\""
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "description": "Cloudflare Worker auth service with D1 + KV foundation for Numerus projects.",
+  "description": "Cloudflare Worker Better Auth service with D1 + KV foundation.",
   "dependencies": {
     "better-auth": "^1.6.23",
     "drizzle-orm": "^0.45.2"

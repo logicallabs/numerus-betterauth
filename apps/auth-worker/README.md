@@ -1,6 +1,6 @@
-# numerus-betterauth
+# better-auth-worker
 
-Cloudflare Worker auth service foundation for Numerus projects with:
+Cloudflare Worker auth service foundation for multi-tenant projects with:
 - Cloudflare D1 for relational auth data
 - Cloudflare KV for session/cache style data
 - TypeScript Worker runtime
@@ -36,8 +36,8 @@ You can run commands in two ways:
    npm run dev
 
 Then test:
-- http://127.0.0.1:8787/health
-- http://127.0.0.1:8787/auth/users/count
+- http://127.0.0.1:8890/health
+- http://127.0.0.1:8890/auth/users/count
 
 ## Better Auth setup
 
@@ -73,20 +73,20 @@ Auth API routes are served under `/api/auth/*`.
 This service supports credentialed cross-origin requests for allowed origins.
 
 - Allowlist is controlled by `ALLOWED_ORIGINS` (comma-separated patterns)
-- Wildcards are supported (for example `https://*.numerus.app`)
+- Wildcards are supported (for example `https://*.example.com`)
 - Requests from non-allowed origins do not receive `Access-Control-Allow-Origin`
 
 Example local `.dev.vars` value:
 
-`ALLOWED_ORIGINS=http://localhost:8789,http://127.0.0.1:8789,https://*.numerus.app`
+`ALLOWED_ORIGINS=http://localhost:8891,http://127.0.0.1:8891,https://*.example.com`
 
 Quick preflight check:
 
-`curl -i -X OPTIONS http://localhost:8788/api/auth/sign-up/email -H "Origin: http://localhost:8789" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: content-type"`
+`curl -i -X OPTIONS http://localhost:8890/api/auth/sign-up/email -H "Origin: http://localhost:8891" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: content-type"`
 
 Expected headers include:
 
-- `Access-Control-Allow-Origin: http://localhost:8789`
+- `Access-Control-Allow-Origin: http://localhost:8891`
 - `access-control-allow-credentials: true`
 - `access-control-allow-methods: GET,POST,OPTIONS`
 

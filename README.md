@@ -1,11 +1,21 @@
-# numerus-betterauth monorepo
+# better-auth-worker monorepo
 
-Monorepo for Numerus authentication services and admin interfaces.
+Generic monorepo template for Better Auth services and admin interfaces on Cloudflare.
 
 ## Apps
 
 - apps/auth-worker: Better Auth backend on Cloudflare Worker (D1 + KV)
 - apps/admin-ui: standalone admin UI (work in progress)
+
+## Account configuration
+
+Before deploying to any account, set tenant-specific values in apps/auth-worker/wrangler.toml:
+
+- Worker names
+- D1 database IDs
+- KV namespace IDs
+- BETTER_AUTH_URL and ALLOWED_ORIGINS
+- Optional routes and zone names
 
 ## Root commands
 

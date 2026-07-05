@@ -1,44 +1,38 @@
-name = "numerus-betterauth"
+name = "betterauth-worker"
 main = "src/index.ts"
 compatibility_date = "2026-07-02"
 compatibility_flags = ["nodejs_compat"]
 workers_dev = true
-routes = [
-	{ pattern = "betterauth.numerus.app/*", zone_name = "numerus.app" }
-]
 
 [[d1_databases]]
 binding = "DB"
-database_name = "numerus_betterauth"
-database_id = "c9a1f6a8-b4b2-4783-be39-e026cb96f506"
-preview_database_id = "local-numerus-betterauth"
+database_name = "betterauth_auth"
+database_id = "REPLACE_WITH_PROD_D1_DATABASE_ID"
+preview_database_id = "local-betterauth-auth"
 
 [[kv_namespaces]]
 binding = "SESSIONS"
-id = "1e30b568b5b44b4588507174064d1c6a"
+id = "REPLACE_WITH_PROD_KV_NAMESPACE_ID"
 preview_id = "local-sessions"
 
 [vars]
 ENVIRONMENT = "production"
-BETTER_AUTH_URL = "https://betterauth.numerus.app"
-ALLOWED_ORIGINS = "https://*.numerus.app"
+BETTER_AUTH_URL = "https://auth.example.com"
+ALLOWED_ORIGINS = "https://app.example.com"
 
 [env.dev]
-name = "numerus-betterauth-dev"
-routes = [
-	{ pattern = "betterauth-dev.numerus.app/*", zone_name = "numerus.app" }
-]
+name = "betterauth-worker-dev"
 
 [[env.dev.d1_databases]]
 binding = "DB"
-database_name = "numerus_betterauth_dev"
-database_id = "960bf5d0-9c83-493d-8147-845385ab3d1d"
+database_name = "betterauth_auth_dev"
+database_id = "REPLACE_WITH_DEV_D1_DATABASE_ID"
 
 [[env.dev.kv_namespaces]]
 binding = "SESSIONS"
-id = "4af7b9923de7441e8830efd5e9071603"
+id = "REPLACE_WITH_DEV_KV_NAMESPACE_ID"
 
 [env.dev.vars]
 ENVIRONMENT = "development"
-BETTER_AUTH_URL = "https://betterauth-dev.numerus.app"
-ALLOWED_ORIGINS = "https://*.numerus.app"
+BETTER_AUTH_URL = "https://auth-dev.example.com"
+ALLOWED_ORIGINS = "https://app-dev.example.com,http://localhost:8891"

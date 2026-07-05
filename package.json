@@ -1,17 +1,17 @@
 {
-  "name": "numerus-betterauth-monorepo",
+  "name": "better-auth-worker-monorepo",
   "private": true,
   "version": "0.2.0",
   "workspaces": [
     "apps/*"
   ],
   "scripts": {
-    "dev:auth": "npm --workspace @numerus/auth-worker run dev",
-    "deploy:auth": "npm --workspace @numerus/auth-worker run deploy",
-    "deploy:auth:dev": "npm --workspace @numerus/auth-worker run deploy:dev",
-    "typecheck:auth": "npm --workspace @numerus/auth-worker run typecheck",
-    "db:migrate:local": "npm --workspace @numerus/auth-worker run db:migrate:local",
-    "db:migrate:dev": "npm --workspace @numerus/auth-worker run db:migrate:dev",
-    "db:migrate:remote": "npm --workspace @numerus/auth-worker run db:migrate:remote"
+    "dev:auth": "npm --workspace apps/auth-worker run dev",
+    "deploy:auth": "npm --workspace apps/auth-worker run deploy",
+    "deploy:auth:dev": "npm --workspace apps/auth-worker run deploy:dev",
+    "typecheck:auth": "npm --workspace apps/auth-worker run typecheck",
+    "db:migrate:local": "npm --workspace apps/auth-worker run db:migrate:local",
+    "db:migrate:dev": "npm --workspace apps/auth-worker run db:migrate:dev",
+    "db:migrate:remote": "npm --workspace apps/auth-worker run db:migrate:remote"
   }
 }

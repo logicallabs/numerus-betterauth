@@ -1,4 +1,4 @@
-# numerus-betterauth-admin-ui
+# better-auth-admin-ui
 
 Pages-based admin UI for managing Better Auth users and sessions.
 
@@ -14,8 +14,8 @@ This app will provide:
 ## Auth backend dependency
 
 This UI uses the Better Auth worker service:
-- Dev: https://betterauth-dev.numerus.app
-- Prod: https://betterauth.numerus.app
+- Dev: https://auth-dev.example.com
+- Prod: https://auth.example.com
 
 All user/session operations are performed through Better Auth admin endpoints.
 

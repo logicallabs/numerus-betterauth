@@ -112,7 +112,7 @@ export default {
 
     return json(
       {
-        service: "numerus-betterauth",
+        service: "betterauth-worker",
         routes: ["GET /health", "GET /auth/users/count", "ALL /api/auth/*"],
         note: "Use /api/auth endpoints for Better Auth; schema is managed with D1 migrations."
       },
