@@ -32,3 +32,7 @@ After `npm install` in repository root:
 ## Auth worker details
 
 See [apps/auth-worker/README.md](apps/auth-worker/README.md) for environment setup, CORS, migrations, and deployment details.
+
+## Deployment onboarding
+
+Use [docs/deployment-setup.md](docs/deployment-setup.md) for account-by-account setup steps, Cloudflare resource provisioning, and tenant rollout guidance.
