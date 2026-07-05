@@ -5,3 +5,8 @@ node_modules/
 apps/*/node_modules/
 apps/*/.wrangler/
 apps/*/.dev.vars
+
+# Tenant records: keep only sanitized public summaries in git.
+docs/tenants/private/
+docs/tenants/*.private.md
+docs/tenants/*.secrets.md

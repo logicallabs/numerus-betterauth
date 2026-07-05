@@ -84,5 +84,6 @@ If using custom routes instead of workers.dev:
 
 ## Notes
 
-- Keep this file outside public repos if it contains sensitive IDs.
+- Sanitized tenant copies can be stored in docs/tenants.
 - Never store secret values in git.
+- Keep any sensitive notes in local-only files under docs/tenants/private.

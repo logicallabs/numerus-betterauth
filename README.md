@@ -37,3 +37,4 @@ See [apps/auth-worker/README.md](apps/auth-worker/README.md) for environment set
 
 Use [docs/deployment-setup.md](docs/deployment-setup.md) for account-by-account setup steps, Cloudflare resource provisioning, and tenant rollout guidance.
 Use [docs/tenant-config-template.md](docs/tenant-config-template.md) as a fill-in sheet for per-tenant IDs, domains, routes, and rollout status.
+Use [docs/tenants/README.md](docs/tenants/README.md) for safe checked-in tenant record conventions.
