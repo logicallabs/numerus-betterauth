@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
   id: text("id").primaryKey(),
@@ -56,9 +56,38 @@ export const verification = sqliteTable("verification", {
   updatedAt: integer("updatedAt", { mode: "timestamp_ms" }).notNull()
 });
 
+export const group = sqliteTable("groups", {
+  id: text("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  kind: text("kind").notNull(),
+  parentGroupId: text("parent_group_id"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull()
+});
+
+export const groupMembership = sqliteTable(
+  "group_memberships",
+  {
+    groupId: text("group_id")
+      .notNull()
+      .references(() => group.id, { onDelete: "cascade" }),
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    role: text("role").notNull().default("member"),
+    createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull()
+  },
+  (table) => [
+    primaryKey({ columns: [table.groupId, table.userId] })
+  ]
+);
+
 export const authSchema = {
   user,
   session,
   account,
-  verification
+  verification,
+  group,
+  groupMembership
 };
