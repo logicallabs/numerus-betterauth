@@ -35,6 +35,8 @@ See [apps/auth-worker/README.md](apps/auth-worker/README.md) for environment set
 
 The auth worker exposes a shared identity API under `/api/v1/*` for downstream apps such as numerus-nuwebkit, asset registry, and future services.
 
+For integration details, start with [docs/shared-identity-api.md](docs/shared-identity-api.md).
+
 ## Deployment onboarding
 
 Use [docs/deployment-setup.md](docs/deployment-setup.md) for account-by-account setup steps, Cloudflare resource provisioning, and tenant rollout guidance.

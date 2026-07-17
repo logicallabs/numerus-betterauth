@@ -70,6 +70,8 @@ Better Auth routes are served under `/api/auth/*`.
 
 Shared identity API routes are served under `/api/v1/*` for any downstream client that needs user, group, or entitlement data.
 
+For a downstream integration guide, read [../../docs/shared-identity-api.md](../../docs/shared-identity-api.md).
+
 ## CORS and Pages integration
 
 This service supports credentialed cross-origin requests for allowed origins.
