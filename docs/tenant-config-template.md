@@ -78,7 +78,7 @@ If using custom routes instead of workers.dev:
 ## Verification URLs
 
 - Local health: http://localhost:8890/health
-- Local users count: http://localhost:8890/auth/users/count
+- Local users count: http://localhost:8890/api/v1/users/count
 - Dev health:
 - Prod health:
 

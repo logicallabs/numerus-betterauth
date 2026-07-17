@@ -123,11 +123,15 @@ From repo root:
 
 3. User count endpoint:
 
-   curl -i http://localhost:8890/auth/users/count
+   curl -i http://localhost:8890/api/v1/users/count
 
 4. CORS preflight example:
 
    curl -i -X OPTIONS http://localhost:8890/api/auth/sign-up/email -H "Origin: http://localhost:8891" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: content-type"
+
+5. Entitlements example:
+
+   curl -i http://localhost:8890/api/v1/me/entitlements -H "Cookie: <session-cookie>"
 
 ## 8. Multi-Tenant Rollout Pattern
 

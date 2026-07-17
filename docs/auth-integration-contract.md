@@ -7,6 +7,7 @@ This document defines the reusable identity and group contract intended for any 
 - Keep identity and membership generic (no product-specific semantics)
 - Keep resource authorization in downstream services
 - Make claims stable for cross-project reuse
+- Support multiple clients, such as numerus-nuwebkit, asset registry, or future internal apps
 
 ## Core concepts
 
@@ -26,7 +27,7 @@ Downstream services should not hardcode business behavior to kind values; use th
 
 Endpoint:
 
-- `GET /api/auth/me/entitlements`
+- `GET /api/v1/me/entitlements`
 
 Response shape:
 
@@ -53,12 +54,12 @@ Response shape:
 
 ## Group management endpoints
 
-- `GET /api/groups`
-- `POST /api/groups`
-- `PATCH /api/groups/:groupId`
-- `GET /api/groups/:groupId/members`
-- `POST /api/groups/:groupId/members`
-- `DELETE /api/groups/:groupId/members/:userId`
+- `GET /api/v1/groups`
+- `POST /api/v1/groups`
+- `PATCH /api/v1/groups/:groupId`
+- `GET /api/v1/groups/:groupId/members`
+- `POST /api/v1/groups/:groupId/members`
+- `DELETE /api/v1/groups/:groupId/members/:userId`
 
 ## Authorization model (auth worker scope)
 
@@ -69,7 +70,7 @@ Response shape:
 
 ## What belongs in downstream services
 
-Downstream services (for example asset registry) should:
+Downstream services (for example numerus-nuwebkit, asset registry, or any other consumer) should:
 
 - accept principals as `user` or `group`
 - store resource ACLs locally

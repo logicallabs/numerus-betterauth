@@ -37,7 +37,7 @@ You can run commands in two ways:
 
 Then test:
 - http://127.0.0.1:8890/health
-- http://127.0.0.1:8890/auth/users/count
+- http://127.0.0.1:8890/api/v1/users/count
 
 ## Better Auth setup
 
@@ -66,7 +66,9 @@ Apply Better Auth migrations:
 
    npm run db:migrate:remote
 
-Auth API routes are served under `/api/auth/*`.
+Better Auth routes are served under `/api/auth/*`.
+
+Shared identity API routes are served under `/api/v1/*` for any downstream client that needs user, group, or entitlement data.
 
 ## CORS and Pages integration
 
@@ -83,6 +85,10 @@ Example local `.dev.vars` value:
 Quick preflight check:
 
 `curl -i -X OPTIONS http://localhost:8890/api/auth/sign-up/email -H "Origin: http://localhost:8891" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: content-type"`
+
+Identity API example:
+
+`curl -i http://localhost:8890/api/v1/me/entitlements -H "Origin: http://localhost:8891" -H "Cookie: <session-cookie>"`
 
 Expected headers include:
 

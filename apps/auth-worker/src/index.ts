@@ -234,7 +234,7 @@ export default {
       });
     }
 
-    if (url.pathname === "/api/auth/me/entitlements" && request.method === "GET") {
+    if (url.pathname === "/api/v1/me/entitlements" && request.method === "GET") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
         return applyCors(request, env, json({ ok: false, message: "Unauthorized" }, 401));
@@ -251,7 +251,7 @@ export default {
       }));
     }
 
-    if (url.pathname === "/api/groups" && request.method === "GET") {
+    if (url.pathname === "/api/v1/groups" && request.method === "GET") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
         return applyCors(request, env, json({ ok: false, message: "Unauthorized" }, 401));
@@ -298,7 +298,7 @@ export default {
       return applyCors(request, env, json({ ok: true, items: rows.results || [] }));
     }
 
-    if (url.pathname === "/api/groups" && request.method === "POST") {
+    if (url.pathname === "/api/v1/groups" && request.method === "POST") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
         return applyCors(request, env, json({ ok: false, message: "Unauthorized" }, 401));
@@ -354,7 +354,7 @@ export default {
       }, 201));
     }
 
-    const updateGroupMatch = url.pathname.match(/^\/api\/groups\/([^/]+)$/);
+    const updateGroupMatch = url.pathname.match(/^\/api\/v1\/groups\/([^/]+)$/);
     if (updateGroupMatch && request.method === "PATCH") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
@@ -435,7 +435,7 @@ export default {
       return applyCors(request, env, json({ ok: true, group }));
     }
 
-    const listMembersMatch = url.pathname.match(/^\/api\/groups\/([^/]+)\/members$/);
+    const listMembersMatch = url.pathname.match(/^\/api\/v1\/groups\/([^/]+)\/members$/);
     if (listMembersMatch && request.method === "GET") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
@@ -464,7 +464,7 @@ export default {
       return applyCors(request, env, json({ ok: true, items: rows.results || [] }));
     }
 
-    const addMemberMatch = url.pathname.match(/^\/api\/groups\/([^/]+)\/members$/);
+    const addMemberMatch = url.pathname.match(/^\/api\/v1\/groups\/([^/]+)\/members$/);
     if (addMemberMatch && request.method === "POST") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
@@ -513,7 +513,7 @@ export default {
       }));
     }
 
-    const removeMemberMatch = url.pathname.match(/^\/api\/groups\/([^/]+)\/members\/([^/]+)$/);
+    const removeMemberMatch = url.pathname.match(/^\/api\/v1\/groups\/([^/]+)\/members\/([^/]+)$/);
     if (removeMemberMatch && request.method === "DELETE") {
       const identity = await resolveSessionIdentity(request, env);
       if (!identity) {
@@ -533,6 +533,11 @@ export default {
       `).bind(groupId, userId).run();
 
       return applyCors(request, env, json({ ok: true }));
+    }
+
+    if (url.pathname === "/api/v1/users/count" && request.method === "GET") {
+      const row = await env.DB.prepare("SELECT COUNT(*) as count FROM user").first<{ count: number }>();
+      return applyCors(request, env, json({ count: row?.count ?? 0 }));
     }
 
     if (url.pathname.startsWith("/api/auth")) {
@@ -569,27 +574,22 @@ export default {
       });
     }
 
-    if (url.pathname === "/auth/users/count") {
-      const row = await env.DB.prepare("SELECT COUNT(*) as count FROM user").first<{ count: number }>();
-      return json({ count: row?.count ?? 0 });
-    }
-
     return json(
       {
         service: "betterauth-worker",
         routes: [
           "GET /health",
-          "GET /auth/users/count",
-          "GET /api/auth/me/entitlements",
-          "GET /api/groups",
-          "POST /api/groups",
-          "PATCH /api/groups/:groupId",
-          "GET /api/groups/:groupId/members",
-          "POST /api/groups/:groupId/members",
-          "DELETE /api/groups/:groupId/members/:userId",
+          "GET /api/v1/users/count",
+          "GET /api/v1/me/entitlements",
+          "GET /api/v1/groups",
+          "POST /api/v1/groups",
+          "PATCH /api/v1/groups/:groupId",
+          "GET /api/v1/groups/:groupId/members",
+          "POST /api/v1/groups/:groupId/members",
+          "DELETE /api/v1/groups/:groupId/members/:userId",
           "ALL /api/auth/*"
         ],
-        note: "Use /api/auth endpoints for Better Auth; schema is managed with D1 migrations."
+        note: "Use /api/auth for Better Auth session flows and /api/v1 for the project-owned identity API; schema is managed with D1 migrations."
       },
       200
     );
